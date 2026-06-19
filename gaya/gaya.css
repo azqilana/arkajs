@@ -1,0 +1,9 @@
+:root{
+  --bg:#0a8120;
+  --fc:#0b53ae;
+}
+h1,h2{
+  color:var(--fc);
+  padding: 20px;
+  background-color: var(--bg);
+}
