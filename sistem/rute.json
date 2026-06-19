@@ -1,20 +1,26 @@
 {
-  "/index.html":{
-    "judul":"Dashboard",
-    "header":"header.html",
-    "main":"beranda.html",
-    "css":"gaya.css"
+  "/index.html": {
+    "judul": "Dashboard",
+    "header": "header.html",
+    "main": "beranda.html",
+    "css": "gaya.css"
   },
-    "/":{
-    "judul":"Dashboard",
-    "header":"header.html",
-    "main":"beranda.html",
-    "css":"gaya.css"
-    },
-    "/tentang":{
-    "judul":"Tentang",
-    "header":"header.html",
-    "main":"tentang.html",
-    "css":"gaya.css"
-    }
+  "/": {
+    "judul": "Dashboard",
+    "header": "header.html",
+    "main": "beranda.html",
+    "css": "gaya.css"
+  },
+  "/tentang": {
+    "judul": "Tentang",
+    "header": "header.html",
+    "main": "tentang.html",
+    "css": "gaya.css"
+  },
+  "/dokumentasi": {
+    "judul": "Dokumentasi",
+    "header": "header.html",
+    "main": "dokumentasi.html",
+    "css": "gaya.css"
+  }
 }

@@ -29,4 +29,17 @@ export default class kelolaRute {
       }
     }
   }
+  async cekStatis() {
+    try {
+      const resNavbar = await fetch("./rancangan/navbar.html");
+      const resSidebar = await fetch("./rancangan/sidebar.html");
+      const resFooter = await fetch("./rancangan/footer.html");
+      const navbar = await resNavbar.text();
+      const sidebar = await resSidebar.text();
+      const footer = await resFooter.text();
+      return { navbar, sidebar, footer };
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  }
 }

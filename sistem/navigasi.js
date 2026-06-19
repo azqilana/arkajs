@@ -5,6 +5,13 @@ const kR = new kelolaRute();
 const R= new Rakit();
 
 export default class kelolaNavigasi {
+  statisDimuat = false
+  async muatStatis(){
+    if(this.statisDimuat) return
+    const statis = await kR.cekStatis()
+    if(statis) R.ambilStatis(statis)
+    this.statisDimuat = true
+  }
  async kelolaKlik(e){
     const el = e.target.closest("a");
   const w_origin = window.location.origin;
@@ -18,6 +25,7 @@ export default class kelolaNavigasi {
     }
   }
  async kelolaW(){
+    await this.muatStatis()
     const hrefnya = window.location.pathname
     const hasil=await this.hasilCekRute(hrefnya)
   }

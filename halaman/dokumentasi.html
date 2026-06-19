@@ -1,0 +1,26 @@
+<section class="konten">
+  <h1>Dokumentasi</h1>
+
+  <h2>Struktur Folder</h2>
+  <ul class="dok-list">
+    <li><strong>gaya/</strong> — file CSS</li>
+    <li><strong>halaman/</strong> — konten setiap halaman</li>
+    <li><strong>rancangan/</strong> — komponen layout (header, footer, navbar, sidebar)</li>
+    <li><strong>sistem/</strong> — engine routing (app.js, navigasi.js, kelola.js, rakit.js, rute.json)</li>
+  </ul>
+
+  <h2>Menambah Halaman Baru</h2>
+  <p>1. Buat file HTML baru di folder <code>halaman/</code>, misalnya <code>kontak.html</code>.</p>
+  <p>2. Daftarkan rutenya di <code>sistem/rute.json</code>:</p>
+  <pre><code>"/kontak": {
+  "judul": "Kontak",
+  "header": "header.html",
+  "main": "kontak.html",
+  "css": "gaya.css"
+}</code></pre>
+  <p>3. Tambahkan link navigasi di header atau halaman manapun:</p>
+  <pre><code>&lt;a href="/kontak"&gt;Kontak&lt;/a&gt;</code></pre>
+
+  <h2>Catatan Deploy</h2>
+  <p>Karena ARKAJS menggunakan <code>history.pushState</code>, pastikan hosting yang digunakan mendukung fallback ke <code>index.html</code> untuk semua path (misalnya Cloudflare Pages, Netlify, atau Vercel).</p>
+</section>
