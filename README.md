@@ -1,4 +1,4 @@
-# create-arkajs
+# ARKAJS
 
 Scaffold tool untuk membuat project **ARKAJS** — mini framework client-side routing menggunakan HTML, CSS, dan JavaScript murni (tanpa dependency lain).
 
