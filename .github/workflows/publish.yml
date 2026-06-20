@@ -22,12 +22,22 @@ jobs:
       - name: Susun folder template
         run: |
           mkdir -p template
-          cp -r gaya template/
-          cp -r halaman template/
-          cp -r rancangan template/
-          cp -r logika template/
-          cp -r sistem template/
-          cp index.html template/
+          EXCLUDES=(
+            --exclude='.git'
+            --exclude='.github'
+            --exclude='node_modules'
+            --exclude='package.json'
+            --exclude='package-lock.json'
+            --exclude='README.md'
+            --exclude='bin'
+            --exclude='template'
+          )
+          if [ -f .gitignore ]; then
+            EXCLUDES+=(--exclude-from='.gitignore')
+          fi
+          rsync -a "${EXCLUDES[@]}" ./ template/
+          echo "Isi folder template:"
+          find template -type f
 
       - name: Publish ke npm
         run: npm publish
