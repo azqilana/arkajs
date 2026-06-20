@@ -1,0 +1,21 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradBiru" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1d7fd1"/>
+      <stop offset="100%" stop-color="#0b53ae"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(60,60)">
+    <!-- 8 garis sinar menembus pusat -->
+    <g stroke="#0b53ae" stroke-width="5" stroke-linecap="round">
+      <line x1="0" y1="-50" x2="0" y2="50"/>
+      <line x1="-50" y1="0" x2="50" y2="0"/>
+      <line x1="-35" y1="-35" x2="35" y2="35"/>
+      <line x1="-35" y1="35" x2="35" y2="-35"/>
+    </g>
+    <!-- bentuk squircle: hijau outline + biru isi -->
+    <rect x="-27" y="-27" width="54" height="54" rx="20"
+          fill="url(#gradBiru)" stroke="#0a8120" stroke-width="6"/>
+  </g>
+</svg>

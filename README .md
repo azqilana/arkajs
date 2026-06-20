@@ -1,8 +1,10 @@
-<<<<<<< HEAD
-# ARKAJS
->>>>>>> 0503deeb66ef109731b829dec8f24225d6455c3f
+<p align="center">
+  <img src="./assets/logo.svg" alt="ARKAJS Logo" width="100" />
+</p>
 
-Scaffold tool untuk membuat project, **ARKAJS** — mini framework client-side routing menggunakan HTML, CSS, dan JavaScript murni (tanpa dependency lain).
+# ARKAJS
+
+Scaffold tool untuk membuat project **ARKAJS** — mini framework client-side routing menggunakan HTML, CSS, dan JavaScript murni (tanpa dependency lain).
 
 ## Cara pakai
 

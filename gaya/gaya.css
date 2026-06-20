@@ -11,6 +11,11 @@
   box-sizing: border-box;
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -29,25 +34,28 @@ body {
   max-width: 960px;
   margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   padding: 16px 20px;
 }
 
 .logo {
-  color: #fff;
-  font-weight: 700;
-  font-size: 1.3rem;
+  position: relative;
+  top:5px;
+  right:10px;
   text-decoration: none;
 }
 
-.logo span {
-  color: var(--bg);
+.logo img{
+  width: 120px;
 }
 
 .navbar__list {
   display: flex;
-  gap: 24px;
+  flex-wrap: wrap;
+  gap: 16px 24px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -179,4 +187,76 @@ main {
   padding: 20px;
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+/* ===== Responsif ===== */
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 24px 16px;
+  }
+
+  .hero h1 {
+    font-size: 1.7rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .fitur {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .header__inner {
+    padding: 14px 16px;
+    justify-content: center;
+  }
+
+  .logo img {
+    width: 90px;
+  }
+
+  .navbar__list {
+    justify-content: center;
+    width: 100%;
+    gap: 12px 18px;
+  }
+
+  .sidebar {
+    padding: 0 16px 16px;
+  }
+
+  .sidebar ul {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .konten pre {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.4rem;
+  }
+
+  .fitur__item {
+    padding: 16px;
+  }
+
+  .logo img {
+    width: 70px;
+  }
+
+  .navbar__list a {
+    font-size: 0.9rem;
+  }
 }
