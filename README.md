@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/logo.svg" alt="ARKAJS Logo" width="100" />
+  <img src="./assets/logomark.svg" alt="ARKAJS Logo" width="100" />
 </p>
 
 # ARKAJS
