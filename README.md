@@ -1,8 +1,10 @@
 <p align="center">
-  <img src="./media/logomark.svg" alt="ARKAJS Logo" width="300" />
+  <img src="https://raw.githubusercontent.com/azqilana/arkajs/main/media/logomark.svg" alt="ARKAJS Logo" width="300" />
 </p>
 
 # ARKAJS
+
+![version](https://img.shields.io/badge/version-1.0.5-blue)
 
 Scaffold tool untuk membuat project **ARKAJS** — mini framework client-side routing menggunakan HTML, CSS, dan JavaScript murni (tanpa dependency lain).
 
@@ -102,9 +104,9 @@ runDOM(['h1', '.navbar', '#footer'], (el, selector) => {
 
 **Catatan:** Letakkan script yang pakai `runDOM` di folder `logika/`, lalu daftarkan importnya di `logika/import.js` supaya otomatis ikut dimuat lewat `sistem/app.js`.
 
-## Generate File Logika Otomatis (`buat-logika.js`)
+## Generate File Logika Otomatis (`buat.js`)
 
-Daripada bikin file baru di `logika/` manual terus daftarin import-nya sendiri di `logika/import.js`, kamu bisa pakai script `buat.js` di root project — ini cuma alias singkat yang memanggil `sistem/buat-logika.js`.
+Daripada bikin file baru di `logika/` manual terus daftarin import-nya sendiri di `logika/import.js`, kamu bisa pakai script `buat.js` di root project (mode default, tanpa kata `rute`).
 
 ```bash
 node buat.js nama-file
@@ -170,6 +172,22 @@ Di akhir, script kasih contoh link navigasi yang perlu kamu tambahkan manual ke 
 **Catatan:**
 - Kalau rute yang diinput sudah pernah terdaftar di `rute.json`, script akan tanya konfirmasi sebelum menimpa.
 - Pastikan menjalankan command ini di **terminal interaktif** (langsung ketik, bukan lewat script otomatis/CI) karena prosesnya tanya-jawab.
+
+## Changelog
+
+### v1.0.5
+- `runDOM` mendukung array selector (`runDOM(['h1', '.btn'], fungsi)`), tetap kompatibel dengan single selector.
+- `runDOM` diganti dari `setTimeout` jadi `MutationObserver` — elemen terdeteksi begitu muncul di DOM, bukan nebak waktu.
+- Tambah `buat.js rute /nama-rute` — generator interaktif untuk rute halaman baru.
+- Rute yang tidak ditemukan (404) tidak lagi membuat aplikasi crash.
+- Path fetch di `sistem/kelola.js` dibuat konsisten (absolut dari root).
+- Circular import antara `app.js` dan `script.js` dihilangkan (`runDOM` dipindah ke `sistem/util.js`).
+- Folder `assets/` diganti nama jadi `media/`.
+
+### v1.0.4
+- Rilis awal scaffold tool ARKAJS.
+
+Lihat [Releases](../../releases) untuk detail lengkap tiap versi.
 
 ## Catatan penting
 
