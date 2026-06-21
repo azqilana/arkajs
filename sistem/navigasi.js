@@ -21,17 +21,21 @@ export default class kelolaNavigasi {
     const hrefnya = el.getAttribute("href");
     e.preventDefault();
     history.pushState(null, "", hrefnya);
-    const hasil=await this.hasilCekRute(hrefnya)
+    await this.hasilCekRute(hrefnya)
     }
   }
  async kelolaW(){
     await this.muatStatis()
     const hrefnya = window.location.pathname
-    const hasil=await this.hasilCekRute(hrefnya)
+    await this.hasilCekRute(hrefnya)
   }
   async hasilCekRute(rute){
     const hasilRute = await kR.cekRute(rute)
-    R.ambilHasil(hasilRute)
+    if (hasilRute) {
+      R.ambilHasil(hasilRute)
+    } else {
+      R.tampilkan404(rute)
+    }
   }
   
 }

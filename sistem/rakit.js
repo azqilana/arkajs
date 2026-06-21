@@ -18,6 +18,13 @@ export class Rakit {
       this.statisDipasang = true
     }
   }
+  tampilkan404(rute){
+    document.title = "404 - Halaman Tidak Ditemukan"
+    const Main = this.selectEl("#main")
+    if (Main) {
+      Main.innerHTML = `<section class="not-found"><h1>404</h1><p>Halaman "${rute}" tidak ditemukan.</p></section>`
+    }
+  }
   pasangJudul(judul){
     document.title=judul
   }

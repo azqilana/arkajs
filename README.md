@@ -64,6 +64,79 @@ nama-project/
 
 3. Tambahkan link `<a href="/kontak">Kontak</a>` di halaman manapun — routing akan otomatis tertangani.
 
+## Mengambil Element dari Halaman (runDOM)
+
+Karena konten setiap halaman (`halaman/*.html`) dimuat secara **asynchronous** lewat `fetch` (bukan langsung ada di HTML saat pertama kali dibuka), kamu **tidak bisa** pakai `document.querySelector` secara langsung di script biasa — element-nya mungkin belum ada saat script dijalankan.
+
+Gunakan helper `runDOM` dari `sistem/util.js`. Helper ini akan otomatis menunggu sampai element-nya benar-benar muncul di halaman, baru menjalankan fungsi yang kamu kasih.
+
+```js
+import { runDOM } from "../sistem/util.js"
+
+runDOM('h1', (el) => {
+  el.addEventListener('click', () => {
+    el.textContent = 'Sudah diklik'
+  })
+})
+```
+
+**Cara pakainya:**
+
+1. Import `runDOM` dari `sistem/util.js` (sesuaikan path relatif sesuai lokasi file kamu).
+2. Panggil `runDOM(selector, fungsi)`:
+   - `selector` → bisa **satu** CSS selector (`'h1'`) atau **array selector** (`['h1', '.btn', '#judul']`). Kalau array, tiap elemen yang ketemu akan langsung memanggil `fungsi` masing-masing — tidak perlu nunggu semuanya ketemu dulu.
+   - `fungsi` → dijalankan setiap satu elemen ditemukan, menerima `(el, selector)` — `el` adalah elemennya, `selector` adalah selector yang cocok (berguna kalau pakai array dan mau tahu elemen mana yang baru ketemu).
+3. (Opsional) Parameter ketiga: batas waktu maksimum menunggu dalam milidetik. Default 10000 (10 detik). Selector yang belum ketemu sampai batas waktu ini akan muncul log `Element ... Not Found`.
+
+```js
+// satu selector
+runDOM('.btn-submit', (el) => {
+  el.addEventListener('click', () => console.log('Diklik!'))
+}, 5000)
+
+// banyak selector sekaligus
+runDOM(['h1', '.navbar', '#footer'], (el, selector) => {
+  console.log(`${selector} sudah muncul:`, el)
+})
+```
+
+**Catatan:** Letakkan script yang pakai `runDOM` di folder `logika/`, lalu daftarkan importnya di `logika/import.js` supaya otomatis ikut dimuat lewat `sistem/app.js`.
+
+## Generate File Logika Otomatis (`buat-logika.js`)
+
+Daripada bikin file baru di `logika/` manual terus daftarin import-nya sendiri di `logika/import.js`, kamu bisa pakai script `buat.js` di root project — ini cuma alias singkat yang memanggil `sistem/buat-logika.js`.
+
+```bash
+node buat.js nama-file
+```
+
+Contoh:
+
+```bash
+node buat.js navbar-toggle
+```
+
+Ini otomatis akan:
+
+1. Membuat file `logika/navbar-toggle.js` dengan placeholder `runDOM` siap pakai:
+
+   ```js
+   import { runDOM } from "../sistem/util.js"
+
+   runDOM('SELECTOR_DISINI', (el) => {
+     // TODO: tulis logic kamu di sini
+   })
+   ```
+
+2. Menambahkan baris `import "./navbar-toggle.js"` ke `logika/import.js` secara otomatis — jadi kamu tidak perlu daftarin manual lagi.
+
+Tinggal buka file barunya, ganti `'SELECTOR_DISINI'` dengan selector element yang mau diambil (contoh: `'.navbar'`, `'#menu-btn'`), lalu isi logic-nya.
+
+**Catatan:**
+- Kalau nama file yang sama sudah ada, script akan menolak dan tidak menimpa file lama.
+- Kalau import-nya sudah pernah terdaftar, tidak akan didaftarkan dobel.
+- Jalankan dari **root folder project** (tempat `buat.js` berada).
+
 ## Catatan penting
 
 Project ini menggunakan `history.pushState` untuk routing, sehingga saat di-deploy ke hosting statis (misalnya Cloudflare Pages, Netlify, Vercel), pastikan hosting tersebut mendukung **SPA fallback** (semua path tanpa file fisik tetap mengarah ke `index.html`). Beberapa hosting seperti Cloudflare Pages sudah mendukung ini secara otomatis.
