@@ -1,6 +1,6 @@
 {
   "name": "create-arkajs",
-  "version": "1.0.8",
+  "version": "1.0.4",
   "description": "Scaffold tool untuk membuat project ARKAJS — mini framework client-side routing berbasis HTML/CSS/JS murni",
   "type": "module",
   "bin": {

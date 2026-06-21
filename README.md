@@ -137,6 +137,40 @@ Tinggal buka file barunya, ganti `'SELECTOR_DISINI'` dengan selector element yan
 - Kalau import-nya sudah pernah terdaftar, tidak akan didaftarkan dobel.
 - Jalankan dari **root folder project** (tempat `buat.js` berada).
 
+## Generate Rute Baru Otomatis (`buat.js rute`)
+
+Selain bikin file logika, `buat.js` juga bisa bikinkan **rute halaman baru** secara interaktif — termasuk file header, konten halaman, CSS, dan otomatis didaftarkan ke `sistem/rute.json`.
+
+```bash
+node buat.js rute /nama-rute
+```
+
+Contoh:
+
+```bash
+node buat.js rute /kontak
+```
+
+Script akan menanyakan secara interaktif:
+
+1. **Judul halaman** — buat title halaman dan dipakai sebagai placeholder `<h1>`.
+2. Untuk tiap file yang dibutuhkan rute (`header`, `main`, `css`):
+   - Kalau file dengan nama default sudah ada (misal `rancangan/header.html` atau `gaya/gaya.css` yang biasanya dipakai bareng-bareng semua rute), script akan tanya: **pakai file yang sama, atau buat file baru?**
+   - Kalau jawab **y** (ya) → file lama dipakai, lanjut ke file berikutnya.
+   - Kalau jawab **n** (tidak) → diminta nama file baru, lalu dibuatkan file baru dengan placeholder kosong.
+   - Kalau file belum ada sama sekali (biasanya file `main`/konten halaman, karena pasti unik per rute) → langsung dibuatkan otomatis dengan placeholder.
+3. Setelah semua file siap, entry baru otomatis ditambahkan/ditimpa di `sistem/rute.json`.
+
+Di akhir, script kasih contoh link navigasi yang perlu kamu tambahkan manual ke `rancangan/navbar.html` atau `rancangan/sidebar.html`:
+
+```html
+<a href="/kontak">Kontak</a>
+```
+
+**Catatan:**
+- Kalau rute yang diinput sudah pernah terdaftar di `rute.json`, script akan tanya konfirmasi sebelum menimpa.
+- Pastikan menjalankan command ini di **terminal interaktif** (langsung ketik, bukan lewat script otomatis/CI) karena prosesnya tanya-jawab.
+
 ## Catatan penting
 
 Project ini menggunakan `history.pushState` untuk routing, sehingga saat di-deploy ke hosting statis (misalnya Cloudflare Pages, Netlify, Vercel), pastikan hosting tersebut mendukung **SPA fallback** (semua path tanpa file fisik tetap mengarah ke `index.html`). Beberapa hosting seperti Cloudflare Pages sudah mendukung ini secara otomatis.
