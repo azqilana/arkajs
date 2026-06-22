@@ -1,24 +1,24 @@
 {
   "/index.html": {
-    "judul": "Dashboard",
+    "judul": "ARKAJS - Starter Kit Routing Tanpa Build Tool",
     "header": "header.html",
     "main": "beranda.html",
     "css": "gaya.css"
   },
   "/": {
-    "judul": "Dashboard",
+    "judul": "ARKAJS - Starter Kit Routing Tanpa Build Tool",
     "header": "header.html",
     "main": "beranda.html",
     "css": "gaya.css"
   },
   "/tentang": {
-    "judul": "Tentang",
+    "judul": "Tentang - ARKAJS",
     "header": "header.html",
     "main": "tentang.html",
     "css": "gaya.css"
   },
   "/dokumentasi": {
-    "judul": "Dokumentasi",
+    "judul": "Dokumentasi - ARKAJS",
     "header": "header.html",
     "main": "dokumentasi.html",
     "css": "gaya.css"

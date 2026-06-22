@@ -1,19 +1,49 @@
 <section class="hero">
-  <h1>Selamat Datang di ARKAJS</h1>
-  <p>Mini framework client-side routing yang ringan, tanpa dependency, dan dibangun murni dengan HTML, CSS, dan JavaScript.</p>
+  <span class="hero__eyebrow">Starter kit client-side routing</span>
+  <h1>Bikin project baru tanpa<br><span class="aksen-biru">build tool</span>, cuma <span class="aksen-hijau">HTML, CSS, JS</span></h1>
+  <p>ARKAJS adalah starter kit untuk project kecil yang sudah punya struktur folder, routing client-side, dan generator rute/script siap pakai — tanpa bundler, tanpa konfigurasi.</p>
+  <div class="hero__cta">
+    <button class="btn btn--utama" id="btn-copy" data-command="npx create-arkajs nama-project">📋 Copy: npx create-arkajs nama-project</button>
+    <a class="btn btn--garis" href="/dokumentasi">Baca dokumentasi</a>
+  </div>
+
+  <div class="terminal" id="terminal-demo">
+    <div class="terminal__bar">
+      <span class="terminal__dot"></span><span class="terminal__dot"></span><span class="terminal__dot"></span>
+    </div>
+    <div class="terminal__body" id="terminal-body"></div>
+  </div>
 </section>
 
 <section class="fitur">
   <div class="fitur__item">
-    <h3>Ringan</h3>
-    <p>Tanpa build tool, tanpa dependency tambahan. Tinggal jalan langsung di browser.</p>
+    <span class="fitur__ikon">⚡</span>
+    <h3>Langsung jalan</h3>
+    <p>Satu command, project siap. Tidak perlu install bundler, webpack, atau framework besar.</p>
   </div>
   <div class="fitur__item">
-    <h3>Routing Sederhana</h3>
-    <p>Atur semua rute aplikasi cukup lewat satu file <code>rute.json</code>.</p>
+    <span class="fitur__ikon">🧭</span>
+    <h3>Routing tanpa reload</h3>
+    <p>Navigasi antar halaman pakai <code>pushState</code>, konten dimuat lewat fetch tanpa reload penuh.</p>
   </div>
   <div class="fitur__item">
-    <h3>Modular</h3>
-    <p>Header, footer, navbar, dan halaman dipisah rapi di folder masing-masing.</p>
+    <span class="fitur__ikon">🛠️</span>
+    <h3>Generator bawaan</h3>
+    <p>Bikin rute dan file logic baru lewat satu command, tidak perlu bikin file manual satu-satu.</p>
+  </div>
+  <div class="fitur__item">
+    <span class="fitur__ikon">🧩</span>
+    <h3>Murni, tanpa dependensi</h3>
+    <p>Cuma HTML, CSS, dan JavaScript bawaan browser. Tidak ada library tambahan yang perlu dipelajari.</p>
+  </div>
+  <div class="fitur__item">
+    <span class="fitur__ikon">👁️</span>
+    <h3>runDOM siap pakai</h3>
+    <p>Wrapper kecil yang aman dipakai untuk elemen yang baru muncul setelah navigasi, tanpa race condition.</p>
+  </div>
+  <div class="fitur__item">
+    <span class="fitur__ikon">📦</span>
+    <h3>Siap di-deploy</h3>
+    <p>Tinggal upload ke Cloudflare Pages atau hosting statis lain, sudah didukung dokumentasinya.</p>
   </div>
 </section>

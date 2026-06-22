@@ -1,26 +1,103 @@
+<div class="dok-layout">
+<aside class="sidebar">
+  <h4>Dokumentasi</h4>
+  <ul>
+    <li><a href="/dokumentasi#instalasi">Instalasi</a></li>
+    <li><a href="/dokumentasi#membuat-rute">Membuat rute</a></li>
+    <li><a href="/dokumentasi#membuat-script">Membuat script</a></li>
+    <li><a href="/dokumentasi#rundom">Pakai runDOM</a></li>
+    <li><a href="/dokumentasi#develop">Develop</a></li>
+    <li><a href="/dokumentasi#deploy">Deploy</a></li>
+  </ul>
+</aside>
 <section class="konten">
   <h1>Dokumentasi</h1>
+  <p class="konten__intro">Semua yang perlu kamu tahu untuk mulai pakai ARKAJS, dari instalasi sampai deploy.</p>
 
-  <h2>Struktur Folder</h2>
+  <h2 id="instalasi">Instalasi</h2>
+  <p>Buat project baru dengan satu command, tidak perlu install ARKAJS secara global:</p>
+  <pre><code>npx create-arkajs nama-project</code></pre>
+  <p>Kalau argumen nama project tidak diisi, file akan dibuat di folder kerja saat ini:</p>
+  <pre><code>npx create-arkajs</code></pre>
+  <p>Setelah selesai, masuk ke folder project dan jalankan dengan live server, misalnya:</p>
+  <pre><code>cd nama-project
+npx serve</code></pre>
+  <div class="catatan">ARKAJS memakai <code>fetch</code> untuk mengambil file <code>rute.json</code> dan halaman HTML, jadi project ini harus dijalankan lewat server (live server/localhost), bukan dibuka langsung sebagai file <code>index.html</code> dari sistem berkas.</div>
+
+  <h2 id="membuat-rute">Membuat rute</h2>
+  <p>Setiap halaman baru didaftarkan sebagai rute lewat generator bawaan:</p>
+  <pre><code>node arka.js rute /nama-rute</code></pre>
+  <p>Contoh, membuat halaman kontak:</p>
+  <pre><code>node arka.js rute /kontak</code></pre>
+  <p>Command ini akan menanyakan beberapa hal secara interaktif:</p>
   <ul class="dok-list">
-    <li><strong>gaya/</strong> — file CSS</li>
-    <li><strong>halaman/</strong> — konten setiap halaman</li>
-    <li><strong>rancangan/</strong> — komponen layout (header, footer, navbar, sidebar)</li>
-    <li><strong>sistem/</strong> — engine routing (app.js, navigasi.js, kelola.js, rakit.js, rute.json)</li>
+    <li>Judul halaman (dipakai sebagai <code>document.title</code>)</li>
+    <li>File header yang dipakai (default <code>rancangan/header.html</code>, bisa pakai file lain)</li>
+    <li>File konten utama, otomatis dibuat di <code>halaman/nama-rute.html</code></li>
+    <li>File CSS yang dipakai (default <code>gaya/gaya.css</code>)</li>
   </ul>
-
-  <h2>Menambah Halaman Baru</h2>
-  <p>1. Buat file HTML baru di folder <code>halaman/</code>, misalnya <code>kontak.html</code>.</p>
-  <p>2. Daftarkan rutenya di <code>sistem/rute.json</code>:</p>
-  <pre><code>"/kontak": {
-  "judul": "Kontak",
-  "header": "header.html",
-  "main": "kontak.html",
-  "css": "gaya.css"
-}</code></pre>
-  <p>3. Tambahkan link navigasi di header atau halaman manapun:</p>
+  <p>Setelah selesai, rute baru otomatis terdaftar di <code>sistem/rute.json</code>. Tinggal tambahkan link navigasinya secara manual, misalnya di <code>rancangan/navbar.html</code>:</p>
   <pre><code>&lt;a href="/kontak"&gt;Kontak&lt;/a&gt;</code></pre>
 
-  <h2>Catatan Deploy</h2>
-  <p>Karena ARKAJS menggunakan <code>history.pushState</code>, pastikan hosting yang digunakan mendukung fallback ke <code>index.html</code> untuk semua path (misalnya Cloudflare Pages, Netlify, atau Vercel).</p>
+  <h2 id="membuat-script">Membuat script</h2>
+  <p>Untuk logic JavaScript per halaman atau per komponen, gunakan generator yang sama:</p>
+  <pre><code>node arka.js nama-file</code></pre>
+  <p>Contoh:</p>
+  <pre><code>node arka.js navbar-toggle</code></pre>
+  <p>Ini akan membuat file <code>logika/navbar-toggle.js</code> dengan template siap pakai, dan otomatis menambahkan import-nya ke <code>logika/import.js</code> supaya langsung ikut dimuat.</p>
+
+  <h2 id="rundom">Pakai runDOM</h2>
+  <p>Karena ARKAJS me-render konten lewat fetch (bukan langsung ada di HTML saat load), elemen di halaman bisa muncul belakangan. <code>runDOM</code> adalah wrapper kecil yang menunggu elemen tersebut ada sebelum menjalankan logic-nya, jadi aman dari race condition.</p>
+  <pre><code>import { runDOM } from "../sistem/util.js"
+
+runDOM('.tombol-kirim', (el) => {
+  el.addEventListener('click', () => {
+    // logic kamu di sini
+  })
+})</code></pre>
+  <p><code>runDOM</code> juga mendukung beberapa selector sekaligus dalam satu pemanggilan:</p>
+  <pre><code>runDOM(['.tombol-kirim', '#form-kontak'], (el, selector) => {
+  // dipanggil untuk masing-masing elemen yang ditemukan
+})</code></pre>
+  <p>Parameter ketiga (opsional) adalah batas waktu pencarian elemen dalam milidetik, default 10000 (10 detik). Kalau elemen tidak pernah muncul sampai batas waktu ini, akan muncul pesan di console.</p>
+
+  <h2 id="develop">Develop</h2>
+  <p>Struktur folder utama yang akan sering kamu sentuh saat develop:</p>
+  <ul class="dok-list">
+    <li><code>halaman/</code> — konten utama tiap rute (HTML)</li>
+    <li><code>rancangan/</code> — header, navbar, sidebar, footer</li>
+    <li><code>logika/</code> — file JavaScript per fitur, di-import lewat <code>logika/import.js</code></li>
+    <li><code>gaya/gaya.css</code> — semua styling, sudah punya variabel warna lewat custom property CSS</li>
+    <li><code>sistem/rute.json</code> — daftar rute dan file yang dipetakan ke masing-masing rute</li>
+    <li><code>sistem/</code> — bagian inti router, tidak perlu diedit kecuali memang mau mengubah cara kerja routing</li>
+  </ul>
+  <p>Jalankan project dengan live server apa saja saat develop, misalnya:</p>
+  <pre><code>npx serve
+# atau
+npx http-server</code></pre>
+
+  <h2 id="deploy">Deploy</h2>
+  <p>ARKAJS adalah single-page application yang memakai <code>pushState</code> untuk navigasi. Artinya, saat seseorang membuka langsung URL seperti <code>/dokumentasi</code> (bukan dari klik link di dalam aplikasi), server tujuan harus tetap mengarahkan permintaan itu ke <code>index.html</code>, bukan mengembalikan 404. Hosting statis yang dipilih wajib mendukung pengaturan rewrite/redirect semacam ini.</p>
+
+  <h3>Cloudflare Pages (disarankan)</h3>
+  <p>Cloudflare Pages mendukung SPA secara native lewat file <code>_redirects</code>. Buat file ini di root project:</p>
+  <pre><code>/*  /index.html  200</code></pre>
+  <p>Lalu deploy dengan menghubungkan repo GitHub ke Cloudflare Pages, atau lewat CLI:</p>
+  <pre><code>npx wrangler pages deploy .</code></pre>
+
+  <h3>Hosting statis lain yang juga mendukung</h3>
+  <table class="tabel-deploy">
+    <thead>
+      <tr><th>Layanan</th><th>Konfigurasi rewrite</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Netlify</td><td>File <code>_redirects</code> sama seperti Cloudflare Pages</td></tr>
+      <tr><td>Vercel</td><td>File <code>vercel.json</code> dengan rule <code>rewrites</code> ke <code>/index.html</code></td></tr>
+      <tr><td>GitHub Pages</td><td>Tidak mendukung rewrite server-side; perlu trik <code>404.html</code> sebagai fallback</td></tr>
+      <tr><td>Nginx (VPS sendiri)</td><td><code>try_files $uri /index.html;</code> di konfigurasi server block</td></tr>
+    </tbody>
+  </table>
+
+  <div class="catatan">Kalau hosting yang dipilih tidak punya cara mengarahkan semua rute ke <code>index.html</code>, refresh di halaman selain beranda akan menghasilkan 404. Untuk project ARKAJS, Cloudflare Pages atau Netlify adalah pilihan paling sederhana karena tinggal menaruh satu file <code>_redirects</code>.</div>
 </section>
+</div>

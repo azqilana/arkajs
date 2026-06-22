@@ -26,13 +26,19 @@ export default class kelolaNavigasi {
   }
  async kelolaW(){
     await this.muatStatis()
-    const hrefnya = window.location.pathname
+    const hrefnya = window.location.pathname + window.location.hash
     await this.hasilCekRute(hrefnya)
   }
   async hasilCekRute(rute){
-    const hasilRute = await kR.cekRute(rute)
+    const [pathnya, hashnya] = rute.split("#")
+    const hasilRute = await kR.cekRute(pathnya)
     if (hasilRute) {
       R.ambilHasil(hasilRute)
+      if (hashnya) {
+        requestAnimationFrame(() => {
+          document.getElementById(hashnya)?.scrollIntoView({ behavior: "smooth" })
+        })
+      }
     } else {
       R.tampilkan404(rute)
     }
