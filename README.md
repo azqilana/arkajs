@@ -142,7 +142,7 @@ Tinggal buka file barunya, ganti `'SELECTOR_DISINI'` dengan selector element yan
 
 ## Generate Rute Baru Otomatis (`buat.js rute`)
 
-Selain bikin file logika, `buat.js` juga bisa bikinkan **rute halaman baru** secara interaktif — termasuk file header, konten halaman, CSS, dan otomatis didaftarkan ke `sistem/rute.json`.
+Selain bikin file logika, `buat.js` juga bisa bikinkan **rute halaman baru** secara interaktif — termasuk file header, konten halaman, CSS, dan otomatis didaftarkan ke `konfigurasi/rute.json`.
 
 ```bash
 node arka.js rute /nama-rute
@@ -162,7 +162,7 @@ Script akan menanyakan secara interaktif:
    - Kalau jawab **y** (ya) → file lama dipakai, lanjut ke file berikutnya.
    - Kalau jawab **n** (tidak) → diminta nama file baru, lalu dibuatkan file baru dengan placeholder kosong.
    - Kalau file belum ada sama sekali (biasanya file `main`/konten halaman, karena pasti unik per rute) → langsung dibuatkan otomatis dengan placeholder.
-3. Setelah semua file siap, entry baru otomatis ditambahkan/ditimpa di `sistem/rute.json`.
+3. Setelah semua file siap, entry baru otomatis ditambahkan/ditimpa di `konfigurasi/rute.json`.
 
 Di akhir, script kasih contoh link navigasi yang perlu kamu tambahkan manual ke `rancangan/navbar.html` atau `rancangan/sidebar.html`:
 
