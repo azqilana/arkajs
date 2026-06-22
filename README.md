@@ -47,14 +47,15 @@ nama-project/
 ├── halaman/         → konten halaman (beranda.html, tentang.html, dst)
 ├── rancangan/        → komponen layout (header, footer, navbar, sidebar)
 ├── logika/          → script tambahan
-├── sistem/          → engine routing (app.js, navigasi.js, kelola.js, rakit.js, rute.json)
+├── konfigurasi/      → rute.json, daftar pemetaan rute
+├── sistem/          → engine routing (app.js, navigasi.js, kelola.js, rakit.js)
 └── index.html
 ```
 
 ## Menambah rute baru
 
 1. Tambah file HTML baru di folder `halaman/`
-2. Daftarkan di `sistem/rute.json`, contoh:
+2. Daftarkan di `konfigurasi/rute.json`, contoh:
 
 ```json
 "/kontak": {
