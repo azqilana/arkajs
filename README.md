@@ -105,18 +105,18 @@ runDOM(['h1', '.navbar', '#footer'], (el, selector) => {
 
 **Catatan:** Letakkan script yang pakai `runDOM` di folder `logika/`, lalu daftarkan importnya di `logika/import.js` supaya otomatis ikut dimuat lewat `sistem/app.js`.
 
-## Generate File Logika Otomatis (`buat.js`)
+## Generate File Logika Otomatis (`arka.js`)
 
 Daripada bikin file baru di `logika/` manual terus daftarin import-nya sendiri di `logika/import.js`, kamu bisa pakai script `buat.js` di root project (mode default, tanpa kata `rute`).
 
 ```bash
-node buat.js nama-file
+node arka.js nama-file
 ```
 
 Contoh:
 
 ```bash
-node buat.js navbar-toggle
+node arka.js navbar-toggle
 ```
 
 Ini otomatis akan:
@@ -138,20 +138,20 @@ Tinggal buka file barunya, ganti `'SELECTOR_DISINI'` dengan selector element yan
 **Catatan:**
 - Kalau nama file yang sama sudah ada, script akan menolak dan tidak menimpa file lama.
 - Kalau import-nya sudah pernah terdaftar, tidak akan didaftarkan dobel.
-- Jalankan dari **root folder project** (tempat `buat.js` berada).
+- Jalankan dari **root folder project** (tempat `arka.js` berada).
 
 ## Generate Rute Baru Otomatis (`buat.js rute`)
 
 Selain bikin file logika, `buat.js` juga bisa bikinkan **rute halaman baru** secara interaktif — termasuk file header, konten halaman, CSS, dan otomatis didaftarkan ke `sistem/rute.json`.
 
 ```bash
-node buat.js rute /nama-rute
+node arka.js rute /nama-rute
 ```
 
 Contoh:
 
 ```bash
-node buat.js rute /kontak
+node arka.js rute /kontak
 ```
 
 Script akan menanyakan secara interaktif:
@@ -173,22 +173,6 @@ Di akhir, script kasih contoh link navigasi yang perlu kamu tambahkan manual ke 
 **Catatan:**
 - Kalau rute yang diinput sudah pernah terdaftar di `rute.json`, script akan tanya konfirmasi sebelum menimpa.
 - Pastikan menjalankan command ini di **terminal interaktif** (langsung ketik, bukan lewat script otomatis/CI) karena prosesnya tanya-jawab.
-
-## Changelog
-
-### v1.0.5
-- `runDOM` mendukung array selector (`runDOM(['h1', '.btn'], fungsi)`), tetap kompatibel dengan single selector.
-- `runDOM` diganti dari `setTimeout` jadi `MutationObserver` — elemen terdeteksi begitu muncul di DOM, bukan nebak waktu.
-- Tambah `buat.js rute /nama-rute` — generator interaktif untuk rute halaman baru.
-- Rute yang tidak ditemukan (404) tidak lagi membuat aplikasi crash.
-- Path fetch di `sistem/kelola.js` dibuat konsisten (absolut dari root).
-- Circular import antara `app.js` dan `script.js` dihilangkan (`runDOM` dipindah ke `sistem/util.js`).
-- Folder `assets/` diganti nama jadi `media/`.
-
-### v1.0.4
-- Rilis awal scaffold tool ARKAJS.
-
-Lihat [Releases](../../releases) untuk detail lengkap tiap versi.
 
 ## Catatan penting
 
