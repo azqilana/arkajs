@@ -1,17 +1,18 @@
-<div class="dok-layout">
-<aside class="sidebar">
-  <h4>Dokumentasi</h4>
-  <ul>
-    <li><a href="/dokumentasi#instalasi">Instalasi</a></li>
-    <li><a href="/dokumentasi#membuat-rute">Membuat rute</a></li>
-    <li><a href="/dokumentasi#membuat-script">Membuat script</a></li>
-    <li><a href="/dokumentasi#rundom">Pakai runDOM</a></li>
-    <li><a href="/dokumentasi#develop">Develop</a></li>
-    <li><a href="/dokumentasi#deploy">Deploy</a></li>
-  </ul>
-</aside>
 <section class="konten">
   <h1>Dokumentasi</h1>
+
+  <h2>Struktur Folder</h2>
+  <ul class="dok-list">
+    <li><strong>gaya/</strong> — file CSS</li>
+    <li><strong>halaman/</strong> — konten setiap halaman</li>
+    <li><strong>rancangan/</strong> — komponen layout</li>
+    <li><strong>media/</strong> — file media seperti foto/video</li>
+    <li><strong>konfigurasi/</strong> — tempat menulis konfigurasi rute</li>
+    <li><strong>sistem/</strong> — engine routing</li>
+  </ul>
+
+  
+<section class="konten">
   <p class="konten__intro">Semua yang perlu kamu tahu untuk mulai pakai ARKAJS, dari instalasi sampai deploy.</p>
 
   <h2 id="instalasi">Instalasi</h2>
@@ -56,8 +57,10 @@ runDOM('.tombol-kirim', (el) => {
   })
 })</code></pre>
   <p><code>runDOM</code> juga mendukung beberapa selector sekaligus dalam satu pemanggilan:</p>
-  <pre><code>runDOM(['.tombol-kirim', '#form-kontak'], (el, selector) => {
-  // dipanggil untuk masing-masing elemen yang ditemukan
+  <pre><code>runDOM(['.tombol-kirim', '#form-kontak'],
+    (el, selector) => {
+  // dipanggil untuk masing-masing
+    elemen yang ditemukan
 })</code></pre>
   <p>Parameter ketiga (opsional) adalah batas waktu pencarian elemen dalam milidetik, default 10000 (10 detik). Kalau elemen tidak pernah muncul sampai batas waktu ini, akan muncul pesan di console.</p>
 
@@ -100,4 +103,4 @@ npx http-server</code></pre>
 
   <div class="catatan">Kalau hosting yang dipilih tidak punya cara mengarahkan semua rute ke <code>index.html</code>, refresh di halaman selain beranda akan menghasilkan 404. Untuk project ARKAJS, Cloudflare Pages atau Netlify adalah pilihan paling sederhana karena tinggal menaruh satu file <code>_redirects</code>.</div>
 </section>
-</div>
+</section>

@@ -1,7 +1,7 @@
 export default class kelolaRute {
   async cekIsiDataRute() {
     try {
-      const response = await fetch("/sistem/rute.json");
+      const response = await fetch("/konfigurasi/rute.json");
       const dataRute = await response.json();
       return dataRute;
     } catch (error) {

@@ -76,9 +76,9 @@ export async function buatRute(rute, rootDir) {
 
   if (!rute.startsWith("/")) rute = "/" + rute;
 
-  const ruteJsonPath = path.join(rootDir, "sistem", "rute.json");
+  const ruteJsonPath = path.join(rootDir, "konfigurasi", "rute.json");
   if (!fs.existsSync(ruteJsonPath)) {
-    console.log("sistem/rute.json tidak ditemukan. Jalankan dari root project ARKAJS.");
+    console.log("konfigurasi/rute.json tidak ditemukan. Jalankan dari root project ARKAJS.");
     rl.close();
     process.exit(1);
   }
@@ -110,7 +110,7 @@ export async function buatRute(rute, rootDir) {
   };
 
   fs.writeFileSync(ruteJsonPath, JSON.stringify(dataRute, null, 2) + "\n");
-  console.log(`\n✔ Rute "${rute}" berhasil didaftarkan di sistem/rute.json`);
+  console.log(`\n✔ Rute "${rute}" berhasil didaftarkan di konfigurasi/rute.json`);
   console.log("Jangan lupa tambahkan link navigasinya, contoh:");
   console.log(`<a href="${rute}">${judul}</a>`);
 
