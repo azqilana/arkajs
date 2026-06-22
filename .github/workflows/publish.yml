@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Susun folder template
@@ -38,7 +38,10 @@ jobs:
           rsync -a "${EXCLUDES[@]}" ./ template/
           echo "Isi folder template:"
           find template -type f
-
+      - name: set Logo
+        run: |
+          mkdir -p media
+          cp template/media/logomark.png media/logomark.png
       - name: Publish ke npm
         run: npm publish
         env:

@@ -1,6 +1,7 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/azqilana/arkajs/main/media/logomark.svg" alt="ARKAJS Logo" width="300" />
+  <img src="./media/logomark.png" alt="ARKAJS Logo" width="300" />
 </p>
+
 
 # ARKAJS
 
