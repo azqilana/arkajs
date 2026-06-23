@@ -5,7 +5,7 @@
 
 # ARKAJS
 
-![version](https://img.shields.io/badge/version-1.0.9-blue)
+![version](https://img.shields.io/github/v/release/azqilana/arkajs?style=flat-square&color=green)
 
 Scaffold tool untuk membuat project **ARKAJS** — mini framework client-side routing menggunakan HTML, CSS, dan JavaScript murni (tanpa dependency lain).
 
